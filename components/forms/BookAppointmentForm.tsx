@@ -336,7 +336,6 @@ export default function BookAppointmentForm() {
                           date.getDay() === 0 || // No Sundays
                           date > new Date(new Date().setDate(new Date().getDate() + 30)) // Max 30 days ahead
                         }
-                        initialFocus
                       />
                     </PopoverContent>
                   </Popover>
