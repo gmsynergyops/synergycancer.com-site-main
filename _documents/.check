@@ -1,0 +1,37 @@
+# === PowerShell Script to Generate .tsx files ===
+
+# Set your target folder path
+$targetFolder = "D:\data\work\projects\synergy-superspecialty-hospital-and-cancer-institute\components\Modules\services\support-services"   # <-- Change this to your actual folder path
+
+# Define the components
+$components = @(
+    "Dietary",
+    "Laundry",
+    "HouseKeeping",
+    "Security"
+)
+
+# Ensure the folder exists
+if (!(Test-Path -Path $targetFolder)) {
+    New-Item -ItemType Directory -Path $targetFolder
+}
+
+# Loop through each component and create a file
+foreach ($component in $components) {
+    $filePath = Join-Path $targetFolder "$component.tsx"
+
+    $content = @"
+import React from 'react';
+
+export const $component = () => {
+  return (
+    <div>$component</div>
+  );
+}
+"@
+
+    # Write the content to the file
+    Set-Content -Path $filePath -Value $content -Encoding UTF8
+
+    Write-Host "Created: $filePath"
+}
